@@ -36,6 +36,7 @@ Patch4: mutt-1.5.23-add_debug_option.patch
 Patch7: mutt-1.5.23-domainname.patch
 Patch8: mutt-1.5.23-system_certs.patch
 Patch9: mutt-1.5.23-ssl_ciphers.patch
+Patch10: mutt-1.5.24.sidebar.20151111.patch
 Url: http://www.mutt.org/
 Requires: mailcap, urlview
 BuildRequires: ncurses-devel, gettext, automake
@@ -86,6 +87,7 @@ autoreconf --install
 %patch7 -p1 -b .domainname
 %patch8  -p1 -b .system_certs
 %patch9  -p1 -b .ssl_ciphers
+%patch10 -p1 -b .sidebar
 
 sed -i -r 's/`$GPGME_CONFIG --libs`/"\0 -lgpg-error"/' configure
 # disable mutt_dotlock program - remove support from mutt binary
