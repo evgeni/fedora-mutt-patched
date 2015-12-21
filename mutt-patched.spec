@@ -14,9 +14,10 @@
 %bcond_without gpgme
 
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
+%global _origname mutt
 
 Summary: A text mode mail user agent
-Name: mutt
+Name: mutt-patched
 Version: 1.5.24
 Release: 1%{?dist}
 Epoch: 5
@@ -25,7 +26,7 @@ Epoch: 5
 License: GPLv2+ and Public Domain
 Group: Applications/Internet
 # hg snapshot created from http://dev.mutt.org/hg/mutt
-Source: %{name}-%{version}.tar.gz
+Source: %{_origname}-%{version}.tar.gz
 Source1: mutt_ldap_query
 Patch1: mutt-1.5.18-muttrc.patch
 Patch2: mutt-1.5.21-cabundle.patch
@@ -39,6 +40,7 @@ Patch9: mutt-1.5.23-ssl_ciphers.patch
 Patch10: mutt-1.5.24.sidebar.20151111.patch
 Url: http://www.mutt.org/
 Requires: mailcap, urlview
+Conflicts: %{_origname}
 BuildRequires: ncurses-devel, gettext, automake
 # manual generation
 BuildRequires: /usr/bin/xsltproc, docbook-style-xsl, perl
@@ -75,7 +77,7 @@ for selecting groups of messages.
 
 %prep
 # unpack; cd
-%setup -q
+%setup -q -n %{_origname}-%{version}
 # disable mutt_dotlock program - disable post-install mutt_dotlock checking
 sed -i -r 's|install-exec-hook|my-useless-label|' Makefile.am
 # do not run ./prepare -V, because it also runs ./configure
@@ -176,10 +178,10 @@ rm -rf $RPM_BUILD_ROOT%{_pkgdocdir}
 # provide muttrc.local(5): the same as muttrc(5)
 ln -sf ./muttrc.5 $RPM_BUILD_ROOT%{_mandir}/man5/muttrc.local.5
 
-%find_lang %{name}
+%find_lang %{_origname}
 
 
-%files -f %{name}.lang
+%files -f %{_origname}.lang
 %config(noreplace) %{_sysconfdir}/Muttrc
 %config(noreplace) %{_sysconfdir}/Muttrc.local
 %doc COPYRIGHT ChangeLog GPL NEWS README* UPDATING mutt_ldap_query
