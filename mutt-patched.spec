@@ -19,7 +19,7 @@
 Summary: A text mode mail user agent
 Name: mutt-patched
 Version: 1.5.24
-Release: 1%{?dist}
+Release: 2%{?dist}
 Epoch: 5
 # The entire source code is GPLv2+ except
 # pgpewrap.c setenv.c sha1.c wcwidth.c which are Public Domain
@@ -199,6 +199,9 @@ ln -sf ./muttrc.5 $RPM_BUILD_ROOT%{_mandir}/man5/muttrc.local.5
 
 
 %changelog
+* Mon Dec 21 2015 Evgeni Golov <evgeni@debian.org> - 5:1.5.24-2
+- add sidebar patch and publish as mutt-patched
+
 * Thu Sep 04 2015 Matej Muzila <mmuzila@redhat.com> - 5:1.5.24-1
 - New release, resolves rhbz#1259332
 
