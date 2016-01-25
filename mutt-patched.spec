@@ -93,7 +93,7 @@ autoreconf --install
 
 sed -i -r 's/`$GPGME_CONFIG --libs`/"\0 -lgpg-error"/' configure
 # disable mutt_dotlock program - remove support from mutt binary
-sed -i -r 's|^(.*USE_DOTLOCK.*)$|//\1|' configure
+sed -i -r 's|USE_DOTLOCK|DO_NOT_USE_DOTLOCK|' configure*
 
 install -p -m644 %{SOURCE1} mutt_ldap_query
 
@@ -199,6 +199,10 @@ ln -sf ./muttrc.5 $RPM_BUILD_ROOT%{_mandir}/man5/muttrc.local.5
 
 
 %changelog
+* Mon Jan 25 2016 Evgeni Golov <evgeni@debian.org> - 5:1.5.24-3
+- fix sed for removing USE_DOTLOCK
+- Resolves: https://github.com/evgeni/fedora-mutt-patched/issues/1
+
 * Mon Dec 21 2015 Evgeni Golov <evgeni@debian.org> - 5:1.5.24-2
 - add sidebar patch and publish as mutt-patched
 
