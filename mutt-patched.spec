@@ -19,7 +19,7 @@
 Summary: A text mode mail user agent
 Name: mutt-patched
 Version: 1.5.24
-Release: 2%{?dist}
+Release: 3%{?dist}
 Epoch: 5
 # The entire source code is GPLv2+ except
 # pgpewrap.c setenv.c sha1.c wcwidth.c which are Public Domain
