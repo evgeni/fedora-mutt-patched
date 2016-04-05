@@ -18,8 +18,8 @@
 
 Summary: A text mode mail user agent
 Name: mutt-patched
-Version: 1.5.24
-Release: 3%{?dist}
+Version: 1.6.0
+Release: 1%{?dist}
 Epoch: 5
 # The entire source code is GPLv2+ except
 # pgpewrap.c setenv.c sha1.c wcwidth.c which are Public Domain
@@ -32,12 +32,9 @@ Patch1: mutt-1.5.18-muttrc.patch
 Patch2: mutt-1.5.21-cabundle.patch
 # FIXME find on dev.mutt.org
 Patch3: mutt-1.5.21-syncdebug.patch
-# FIXME make it to upstream
-Patch4: mutt-1.5.23-add_debug_option.patch
-Patch7: mutt-1.5.23-domainname.patch
 Patch8: mutt-1.5.23-system_certs.patch
 Patch9: mutt-1.5.23-ssl_ciphers.patch
-Patch10: mutt-1.5.24.sidebar.20151111.patch
+Patch10: mutt-1.6.0.sidebar.20160405.patch
 Url: http://www.mutt.org/
 Requires: mailcap, urlview
 Conflicts: %{_origname}
@@ -85,8 +82,6 @@ autoreconf --install
 %patch1 -p1 -b .muttrc
 %patch2 -p1 -b .cabundle
 %patch3 -p1 -b .syncdebug
-%patch4 -p1 -b .add_debug_option
-%patch7 -p1 -b .domainname
 %patch8  -p1 -b .system_certs
 %patch9  -p1 -b .ssl_ciphers
 %patch10 -p1 -b .sidebar
@@ -199,6 +194,9 @@ ln -sf ./muttrc.5 $RPM_BUILD_ROOT%{_mandir}/man5/muttrc.local.5
 
 
 %changelog
+* Tue Apr 05 2016 Evgeni Golov <evgeni@debian.org> - 5:1.6.0-1
+- new upstream release
+
 * Mon Jan 25 2016 Evgeni Golov <evgeni@debian.org> - 5:1.5.24-3
 - fix sed for removing USE_DOTLOCK
 - Resolves: https://github.com/evgeni/fedora-mutt-patched/issues/1
